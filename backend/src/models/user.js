@@ -3,13 +3,14 @@ const bcrypt = require('bcryptjs');
 
 const SALT_ROUNDS = 12;
 
-const userSchema = new mongoose.Schema(   //creating a userSchema instance  via mongooose core module.
+const userSchema = new mongoose.Schema(
+  //creating a userSchema instance  via mongooose core module.
   {
     username: {
       type: String,
       required: [true, 'Username is required'],
-      unique: true,        // creates a unique index in MongoDB
-      trim: true,          // removes spaces at the start/end
+      unique: true, // creates a unique index in MongoDB
+      trim: true, // removes spaces at the start/end
       minlength: 3,
       maxlength: 30,
     },
@@ -18,13 +19,13 @@ const userSchema = new mongoose.Schema(   //creating a userSchema instance  via 
       required: [true, 'Email is required'],
       unique: true,
       trim: true,
-      lowercase: true,     // "Sunny@X.com" and "sunny@x.com" become the same
+      lowercase: true, // "Sunny@X.com" and "sunny@x.com" become the same
       match: [/^\S+@\S+\.\S+$/, 'Email format is invalid'],
     },
     password: {
       type: String,
       required: [true, 'Password is required'],
-      select: false,       // NOT returned by queries unless explicitly asked for
+      select: false, // NOT returned by queries unless explicitly asked for
     },
   },
   {

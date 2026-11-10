@@ -1,10 +1,10 @@
 $kind: http-request
-url: "{{baseUrl}}/api/v1/emp/employees/{{resourceA}}"
+url: '{{baseUrl}}/api/v1/emp/employees/{{resourceA}}'
 method: GET
 auth:
   type: bearer
   credentials:
-    token: "{{tokenA}}"
+    token: '{{tokenA}}'
 scripts:
   - type: afterResponse
     code: "  pm.test(\"200 OK\", () => pm.response.to.have.status(200));\r

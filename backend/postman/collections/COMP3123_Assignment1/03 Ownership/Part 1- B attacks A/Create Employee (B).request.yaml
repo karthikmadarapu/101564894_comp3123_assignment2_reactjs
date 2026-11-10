@@ -1,5 +1,5 @@
 $kind: http-request
-url: "{{baseUrl}}/api/v1/emp/employees"
+url: '{{baseUrl}}/api/v1/emp/employees'
 method: POST
 body:
   type: json
@@ -23,7 +23,7 @@ body:
 auth:
   type: bearer
   credentials:
-    token: "{{tokenB}}"
+    token: '{{tokenB}}'
 scripts:
   - type: afterResponse
     code: "  pm.test(\"B created employee (201)\", () => pm.response.to.have.status(201));\r
