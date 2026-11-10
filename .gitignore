@@ -1,0 +1,21 @@
+# deps / builds
+node_modules/
+dist/
+
+# env & secrets
+.env
+.env.*
+*.env
+!.env.example
+
+# runtime folders (keep the folder, not the contents)
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/logs/*
+!backend/logs/.gitkeep
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.lnk
+.postman/
