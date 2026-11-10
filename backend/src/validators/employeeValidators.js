@@ -1,4 +1,4 @@
-const {body, param , query} = require('express-validator');
+const { body, param, query } = require('express-validator');
 
 const eidParam = param('eid').isMongoId().withMessage('Invalid employee id');
 const eidQuery = query('eid').isMongoId().withMessage('Invalid employee id');
@@ -9,7 +9,10 @@ const createRules = [
   body('email').trim().isEmail().withMessage('Valid email is required').normalizeEmail(),
   body('position').trim().notEmpty().withMessage('position is required'),
   body('salary').isFloat({ gt: 0 }).withMessage('salary must be a positive number').toFloat(),
-  body('date_of_joining').isISO8601().withMessage('date_of_joining must be a valid date (YYYY-MM-DD)').toDate(),
+  body('date_of_joining')
+    .isISO8601()
+    .withMessage('date_of_joining must be a valid date (YYYY-MM-DD)')
+    .toDate(),
   body('department').trim().notEmpty().withMessage('department is required'),
 ];
 

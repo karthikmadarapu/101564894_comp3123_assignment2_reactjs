@@ -1,6 +1,6 @@
 $kind: http-request
 name: 8.Malformed token.
-url: "{{baseUrl}}/api/v1/emp/employees"
+url: '{{baseUrl}}/api/v1/emp/employees'
 method: GET
 auth:
   type: bearer
