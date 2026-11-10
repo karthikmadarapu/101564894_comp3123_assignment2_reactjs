@@ -1,0 +1,51 @@
+// app.js configures the app (middleware and routes)
+
+const express = require('express');
+const helmet = require('helmet');
+const userRoutes = require('./routes/userRoutes');
+const requestLogger = require('./middleware/requestLogger');
+const notFound = require('./middleware/notFound');
+const errorHandler = require('./middleware/errorHandler');
+const { apiLimiter, authLimiter } = require('./middleware/rateLimiter');
+
+
+
+const app = express();
+app.set('trust proxy', 1);
+
+// Parse JSON request bodies into req.body
+app.use(requestLogger);
+app.use(helmet());
+app.use(express.json());
+
+
+
+// General limiter on everything under /api
+app.use('/api', apiLimiter);
+
+// Strict limiter only on the auth endpoints
+app.use('/api/v1/user/login', authLimiter);
+app.use('/api/v1/user/signup', authLimiter);
+
+
+// Health check: lets anyone confirm the API is alive
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    uptime: process.uptime(),        // seconds the server has been running
+    timestamp: new Date().toISOString(),
+  });
+
+});
+
+
+  app.use('/api/v1/user', userRoutes);
+  
+  app.use('/api/v1/emp', require('./routes/employeeRoutes'));
+
+  app.use(notFound);
+  app.use(errorHandler);
+
+
+
+module.exports = app;
