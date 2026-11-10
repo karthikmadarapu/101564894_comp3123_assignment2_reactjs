@@ -1,12 +1,11 @@
-require('dotenv').config();   // must run first so process.env is filled
+require('dotenv').config(); // must run first so process.env is filled
 const app = require('./app');
 const connectDB = require('./config/db');
 
-
-
 const PORT = process.env.PORT || 3000;
 
-async function start() {   //Here in server.js im using Try catch block  and a new function which represents all the functions and port connections created in  src/config/db.js && src/app.js (express start).
+async function start() {
+  //Here in server.js im using Try catch block  and a new function which represents all the functions and port connections created in  src/config/db.js && src/app.js (express start).
   try {
     await connectDB();
     app.listen(PORT, () => {

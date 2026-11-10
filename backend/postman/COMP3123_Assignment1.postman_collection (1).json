@@ -15,12 +15,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/health",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "health"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["health"]
             }
           },
           "event": [
@@ -58,15 +54,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/api/v1/user/login",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "v1",
-                "user",
-                "login"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "user", "login"]
             },
             "body": {
               "mode": "raw",
@@ -86,9 +75,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  ""
-                ]
+                "exec": [""]
               }
             }
           ]
@@ -105,15 +92,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/api/v1/user/signup",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "v1",
-                "user",
-                "signup"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "user", "signup"]
             },
             "body": {
               "mode": "raw",
@@ -161,15 +141,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/api/v1/user/signup",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "v1",
-                "user",
-                "signup"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "user", "signup"]
             },
             "body": {
               "mode": "raw",
@@ -217,15 +190,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/api/v1/user/login",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "v1",
-                "user",
-                "login"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "user", "login"]
             },
             "body": {
               "mode": "raw",
@@ -270,15 +236,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/api/v1/user/login",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "v1",
-                "user",
-                "login"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "user", "login"]
             },
             "body": {
               "mode": "raw",
@@ -328,15 +287,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/api/v1/emp/employees",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "v1",
-                "emp",
-                "employees"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "emp", "employees"]
             },
             "body": {
               "mode": "raw",
@@ -381,15 +333,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/api/v1/emp/employees",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "v1",
-                "emp",
-                "employees"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "emp", "employees"]
             },
             "auth": {
               "type": "bearer",
@@ -427,16 +372,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/api/v1/emp/employees/{{resourceA}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "v1",
-                "emp",
-                "employees",
-                "{{resourceA}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "emp", "employees", "{{resourceA}}"]
             },
             "auth": {
               "type": "bearer",
@@ -477,16 +414,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/api/v1/emp/employees/{{resourceA}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "v1",
-                "emp",
-                "employees",
-                "{{resourceA}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "emp", "employees", "{{resourceA}}"]
             },
             "body": {
               "mode": "raw",
@@ -513,9 +442,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "  pm.test(\"200 OK\", () => pm.response.to.have.status(200));"
-                ]
+                "exec": ["  pm.test(\"200 OK\", () => pm.response.to.have.status(200));"]
               }
             }
           ]
@@ -532,15 +459,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/api/v1/emp/employees",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "v1",
-                "emp",
-                "employees"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "emp", "employees"]
             },
             "body": {
               "mode": "raw",
@@ -585,16 +505,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/api/v1/emp/employees/{{resourceA}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "v1",
-                "emp",
-                "employees",
-                "{{resourceA}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "emp", "employees", "{{resourceA}}"]
             },
             "auth": {
               "type": "bearer",
@@ -612,9 +524,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "  pm.test(\"Deleted (204)\", () => pm.response.to.have.status(204));"
-                ]
+                "exec": ["  pm.test(\"Deleted (204)\", () => pm.response.to.have.status(204));"]
               }
             }
           ]
@@ -626,16 +536,8 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/api/v1/emp/employees/{{tempA}}",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "v1",
-                "emp",
-                "employees",
-                "{{tempA}}"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "emp", "employees", "{{tempA}}"]
             },
             "auth": {
               "type": "bearer",
@@ -653,9 +555,7 @@
               "listen": "test",
               "script": {
                 "type": "text/javascript",
-                "exec": [
-                  "  pm.test(\"Gone (404)\", () => pm.response.to.have.status(404));"
-                ]
+                "exec": ["  pm.test(\"Gone (404)\", () => pm.response.to.have.status(404));"]
               }
             }
           ]
@@ -680,15 +580,8 @@
                 ],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees"]
                 },
                 "body": {
                   "mode": "raw",
@@ -732,16 +625,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees/{{resourceA}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees",
-                    "{{resourceA}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees", "{{resourceA}}"]
                 },
                 "auth": {
                   "type": "bearer",
@@ -780,16 +665,8 @@
                 ],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees/{{resourceA}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees",
-                    "{{resourceA}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees", "{{resourceA}}"]
                 },
                 "body": {
                   "mode": "raw",
@@ -832,16 +709,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees/{{resourceA}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees",
-                    "{{resourceA}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees", "{{resourceA}}"]
                 },
                 "auth": {
                   "type": "bearer",
@@ -875,16 +744,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees/{{resourceA}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees",
-                    "{{resourceA}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees", "{{resourceA}}"]
                 },
                 "auth": {
                   "type": "bearer",
@@ -919,15 +780,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees"]
                 },
                 "auth": {
                   "type": "bearer",
@@ -978,16 +832,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees/{{resourceB}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees",
-                    "{{resourceB}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees", "{{resourceB}}"]
                 },
                 "auth": {
                   "type": "bearer",
@@ -1026,16 +872,8 @@
                 ],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees/{{resourceB}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees",
-                    "{{resourceB}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees", "{{resourceB}}"]
                 },
                 "body": {
                   "mode": "raw",
@@ -1078,16 +916,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees/{{resourceB}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees",
-                    "{{resourceB}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees", "{{resourceB}}"]
                 },
                 "auth": {
                   "type": "bearer",
@@ -1121,16 +951,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees/{{resourceB}}",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees",
-                    "{{resourceB}}"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees", "{{resourceB}}"]
                 },
                 "auth": {
                   "type": "bearer",
@@ -1165,15 +987,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees"]
                 },
                 "auth": {
                   "type": "bearer",
@@ -1214,15 +1029,8 @@
                 ],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees"]
                 },
                 "body": {
                   "mode": "raw",
@@ -1282,15 +1090,8 @@
                 ],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/user/signup",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "user",
-                    "signup"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "user", "signup"]
                 },
                 "body": {
                   "mode": "raw",
@@ -1329,15 +1130,8 @@
                 ],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/user/signup",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "user",
-                    "signup"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "user", "signup"]
                 },
                 "body": {
                   "mode": "raw",
@@ -1376,15 +1170,8 @@
                 ],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/user/signup",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "user",
-                    "signup"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "user", "signup"]
                 },
                 "body": {
                   "mode": "raw",
@@ -1423,15 +1210,8 @@
                 ],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/user/signup",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "user",
-                    "signup"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "user", "signup"]
                 },
                 "body": {
                   "mode": "raw",
@@ -1475,15 +1255,8 @@
                 ],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/user/login",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "user",
-                    "login"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "user", "login"]
                 },
                 "body": {
                   "mode": "raw",
@@ -1522,15 +1295,8 @@
                 ],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/user/login",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "user",
-                    "login"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "user", "login"]
                 },
                 "body": {
                   "mode": "raw",
@@ -1569,15 +1335,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees"]
                 }
               },
               "event": [
@@ -1599,15 +1358,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees"]
                 },
                 "auth": {
                   "type": "bearer",
@@ -1639,15 +1391,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees"]
                 },
                 "auth": {
                   "type": "bearer",
@@ -1689,15 +1434,8 @@
                 ],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees"]
                 },
                 "body": {
                   "mode": "raw",
@@ -1746,15 +1484,8 @@
                 ],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees"]
                 },
                 "body": {
                   "mode": "raw",
@@ -1788,16 +1519,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees/123",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees",
-                    "123"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees", "123"]
                 }
               },
               "event": [
@@ -1824,16 +1547,8 @@
                 "header": [],
                 "url": {
                   "raw": "{{baseUrl}}/api/v1/emp/employees/000000000000000000000000",
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "path": [
-                    "api",
-                    "v1",
-                    "emp",
-                    "employees",
-                    "000000000000000000000000"
-                  ]
+                  "host": ["{{baseUrl}}"],
+                  "path": ["api", "v1", "emp", "employees", "000000000000000000000000"]
                 }
               },
               "event": [
@@ -1877,15 +1592,8 @@
             ],
             "url": {
               "raw": "{{baseUrl}}/api/v1/user/login",
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "path": [
-                "api",
-                "v1",
-                "user",
-                "login"
-              ]
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "user", "login"]
             },
             "body": {
               "mode": "raw",

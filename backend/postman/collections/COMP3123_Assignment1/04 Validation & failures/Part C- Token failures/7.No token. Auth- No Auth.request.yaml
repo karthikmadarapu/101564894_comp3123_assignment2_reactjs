@@ -1,6 +1,6 @@
 $kind: http-request
-name: "7.No token. Auth: No Auth"
-url: "{{baseUrl}}/api/v1/emp/employees"
+name: '7.No token. Auth: No Auth'
+url: '{{baseUrl}}/api/v1/emp/employees'
 method: GET
 scripts:
   - type: afterResponse

@@ -1,9 +1,9 @@
 $kind: http-request
-description: ""
-url: "{{baseUrl}}/api/v1/user/login"
+description: ''
+url: '{{baseUrl}}/api/v1/user/login'
 method: POST
 headers:
-  "": ""
+  '': ''
 body:
   type: json
   content: "{ \r
@@ -17,6 +17,6 @@ auth:
   type: noauth
 scripts:
   - type: afterResponse
-    code: ""
+    code: ''
     language: text/javascript
 order: 1000
