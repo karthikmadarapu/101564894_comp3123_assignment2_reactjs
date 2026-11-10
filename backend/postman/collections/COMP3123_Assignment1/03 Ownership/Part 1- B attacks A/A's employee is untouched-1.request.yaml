@@ -1,11 +1,11 @@
 $kind: http-request
 name: A's employee is untouched
-url: "{{baseUrl}}/api/v1/emp/employees/{{resourceA}}"
+url: '{{baseUrl}}/api/v1/emp/employees/{{resourceA}}'
 method: GET
 auth:
   type: bearer
   credentials:
-    token: "{{tokenA}}"
+    token: '{{tokenA}}'
 scripts:
   - type: afterResponse
     code: "  pm.test(\"A's employee still exists (200)\", () =>

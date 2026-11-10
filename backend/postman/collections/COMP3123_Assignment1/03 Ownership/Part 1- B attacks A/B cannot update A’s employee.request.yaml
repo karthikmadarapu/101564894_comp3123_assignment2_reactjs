@@ -1,5 +1,5 @@
 $kind: http-request
-url: "{{baseUrl}}/api/v1/emp/employees/{{resourceA}}"
+url: '{{baseUrl}}/api/v1/emp/employees/{{resourceA}}'
 method: PUT
 body:
   type: json
@@ -7,7 +7,7 @@ body:
 auth:
   type: bearer
   credentials:
-    token: "{{tokenB}}"
+    token: '{{tokenB}}'
 scripts:
   - type: afterResponse
     code: "  pm.test(\"B blocked from updating A's employee\", () => {\r
