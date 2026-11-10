@@ -1,10 +1,10 @@
 $kind: http-request
-url: "{{baseUrl}}/api/v1/emp/employees/{{resourceA}}"
+url: '{{baseUrl}}/api/v1/emp/employees/{{resourceA}}'
 method: DELETE
 auth:
   type: bearer
   credentials:
-    token: "{{tokenA}}"
+    token: '{{tokenA}}'
 scripts:
   - type: afterResponse
     code: '  pm.test("Deleted (204)", () => pm.response.to.have.status(204));'
