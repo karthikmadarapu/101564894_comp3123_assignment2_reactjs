@@ -5,11 +5,7 @@ async function auth(req, res, next) {
   //1. read the header
   const header = req.headers.authorization;
 
-<<<<<<< HEAD
-  if (!header || !header.startsWith('Bearer')) {
-=======
   if (!header || !header.startsWith('Bearer ')) {
->>>>>>> phase2-frontend
     return res.status(401).json({ message: 'Missing or malformed Authorization header' });
   }
 

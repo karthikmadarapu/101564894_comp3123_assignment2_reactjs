@@ -2,31 +2,6 @@ const mongoose = require('mongoose');
 
 const employeeSchema = new mongoose.Schema(
   {
-<<<<<<< HEAD
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-      index: true, // every query filters by user, so index it
-    },
-    first_name: { type: String, required: true, trim: true },
-    last_name: { type: String, required: true, trim: true },
-    email: { type: String, required: true, trim: true, lowercase: true },
-    position: { type: String, required: true, trim: true },
-    salary: { type: Number, required: true, min: 0 },
-    date_of_joining: { type: Date, required: true },
-    department: { type: String, required: true, trim: true },
-  },
-  {
-    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
-  }
-);
-
-// Email is unique per owner, not globally
-employeeSchema.index({ user: 1, email: 1 }, { unique: true });
-
-module.exports = mongoose.model('Employee', employeeSchema);
-=======
     first_name: { type: String, required: true },
     last_name: { type: String, required: true },
     email: { type: String, required: true },
@@ -50,4 +25,3 @@ employeeSchema.index({ owner: 1, position: 1 });
 employeeSchema.set('toJSON', { virtuals: true, versionKey: false });
 
 module.exports = mongoose.model('Employee', employeeSchema);
->>>>>>> phase2-frontend
