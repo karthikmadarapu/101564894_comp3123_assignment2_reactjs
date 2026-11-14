@@ -19,3 +19,6 @@ backend/logs/*
 Thumbs.db
 *.lnk
 .postman/
+
+#Phase 1 backend 
+.env, uploads/*, logs/

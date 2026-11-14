@@ -1,7 +1,7 @@
 {
-  "name": "101564894_comp3123_assignment1",
+  "name": "101564894_comp3123_assignment2_reactjs",
   "version": "1.0.0",
-  "description": "��#\u0000 \u0000A\u0000s\u0000s\u0000i\u0000g\u0000n\u0000m\u0000e\u0000n\u0000t\u0000 \u00001\u0000 \u0000-\u0000 \u0000C\u0000O\u0000M\u0000P\u00003\u00001\u00002\u00003\u0000\r\u0000 \u0000",
+  "description": "Building a react based application for Assignment2",
   "main": "index.js",
   "scripts": {
     "start": "node src/server.js",
