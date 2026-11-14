@@ -15,7 +15,8 @@ const apiLimiter = rateLimit({
 // Strict limiter for login and signup
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  limit: 5, // only 5 attempts per IP per window
+   // only 5 attempts per IP per window
+  limit: process.env.NODE_ENV === 'production' ? 5 : 100,
   standardHeaders: 'draft-8',
   legacyHeaders: false,
   message: {
