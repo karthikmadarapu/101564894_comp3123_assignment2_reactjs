@@ -1,102 +1,60 @@
 import { useState } from 'react';
-import heroImg from './assets/hero.png';
-import reactLogo from './assets/react.svg';
-import viteLogo from './assets/vite.svg';
-import './App.css';
+import { Alert, Box, Button, Paper, Stack, TextField, Typography } from '@mui/material';
+import { useAuth } from './hooks/useAuth';
+import { login as loginApi } from './api/auth';
+import { getErrorMessage } from './api/client';
 
-function App() {
-  const [count, setCount] = useState(0);
+export default function App() {
+  const { isAuthenticated, user, login, logout } = useAuth();
+  const [form, setForm] = useState({ email: '', password: '' });
+  const [error, setError] = useState('');
+  const [keys, setKeys] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    try {
+      const data = await loginApi(form);
+      setKeys(Object.keys(data).join(', ')); // shows the response shape, never the token itself
+      const token = data.token ?? data.jwt_token ?? data.accessToken;
+      if (!token) throw new Error('No token in login response. Check the backend.');
+      login(token, data.user ?? { username: data.username, email: data.email ?? form.email });
+    } catch (err) {
+      setError(err.response ? getErrorMessage(err) : err.message);
+    }
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button type="button" className="counter" onClick={() => setCount((count) => count + 1)}>
-          Count is {count}
-        </button>
-      </section>
+    <Box sx={{ maxWidth: 420, mx: 'auto', mt: 8, px: 2 }}>
+      <Paper sx={{ p: 3 }}>
+        <Typography variant="h6" gutterBottom>
+          Step 3 checkpoint
+        </Typography>
+        <Typography sx={{ mb: 2 }}>
+          Status: <b>{isAuthenticated ? `logged in as ${user?.username ?? user?.email ?? '?'}` : 'logged out'}</b>
+        </Typography>
+        {keys && <Alert severity="info" sx={{ mb: 2 }}>Login response keys: {keys}</Alert>}
+        {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg className="button-icon" role="presentation" aria-hidden="true">
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg className="button-icon" role="presentation" aria-hidden="true">
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg className="button-icon" role="presentation" aria-hidden="true">
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg className="button-icon" role="presentation" aria-hidden="true">
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+        {isAuthenticated ? (
+          <Button variant="outlined" onClick={logout}>
+            Log out
+          </Button>
+        ) : (
+          <Stack component="form" spacing={2} onSubmit={handleSubmit}>
+            <TextField label="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+            <TextField
+              label="Password"
+              type="password"
+              value={form.password}
+              onChange={(e) => setForm({ ...form, password: e.target.value })}
+            />
+            <Button type="submit" variant="contained">
+              Test login
+            </Button>
+          </Stack>
+        )}
+      </Paper>
+    </Box>
   );
 }
-
-export default App;
