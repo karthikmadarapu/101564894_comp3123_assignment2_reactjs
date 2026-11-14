@@ -1,4 +1,5 @@
 const rateLimit = require('express-rate-limit');
+const { rateLimitMax } = require('../config');
 
 // General limiter for the whole API
 const apiLimiter = rateLimit({
@@ -15,8 +16,8 @@ const apiLimiter = rateLimit({
 // Strict limiter for login and signup
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-   // only 5 attempts per IP per window
-  limit: process.env.NODE_ENV === 'production' ? 5 : 100,
+  // RATE_LIMIT_MAX attempts per IP per window (default 10). Keep it low to demo the 429.
+  limit: rateLimitMax,
   standardHeaders: 'draft-8',
   legacyHeaders: false,
   message: {

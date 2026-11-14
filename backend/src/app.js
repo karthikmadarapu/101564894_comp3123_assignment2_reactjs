@@ -2,6 +2,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
+const mongoose = require('mongoose');
 const { uploadDir, corsOrigins } = require('./config');
 const userRoutes = require('./routes/userRoutes');
 const employeeRoutes = require('./routes/employee.routes');
@@ -19,7 +20,16 @@ app.use(requestLogger);
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
 
 // Step 4: allow the React app (CORS_ORIGIN in .env) to call this API
-app.use(cors({ origin: corsOrigins, credentials: true }));
+app.use(
+  cors({
+    origin: corsOrigins,
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    // Without this the browser hides Retry-After and the UI cannot say "try again in N minutes"
+    exposedHeaders: ['Retry-After', 'RateLimit', 'RateLimit-Policy'],
+  }),
+);
 
 app.use(express.json());
 
@@ -29,8 +39,15 @@ app.use('/api/v1/user/login', authLimiter);
 app.use('/api/v1/user/signup', authLimiter);
 
 // Health check
+// Health check (used by the Docker healthcheck): 503 when Mongo is not connected
 app.get('/health', (req, res) => {
-  res.status(200).json({ status: 'ok', uptime: process.uptime(), timestamp: new Date().toISOString() });
+  const dbUp = mongoose.connection.readyState === 1;
+  res.status(dbUp ? 200 : 503).json({
+    status: dbUp ? 'ok' : 'degraded',
+    db: dbUp ? 'connected' : 'disconnected',
+    uptime: Math.round(process.uptime()),
+    timestamp: new Date().toISOString(),
+  });
 });
 
 // Step 5: serve uploaded pictures at http://localhost:5000/uploads/<file>

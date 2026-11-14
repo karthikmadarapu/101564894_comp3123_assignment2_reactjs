@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
     const buf = Buffer.alloc(12);
     await fh.read(buf, 0, 12, 0);
     const check = SIGNATURES[req.file.mimetype];
-    if (!check || !check(buf)) throw new AppError('File is not a valid image', 400);
+    if (!check || !check(buf)) throw new AppError('File is not a valid image', 400, 'INVALID_FILE_TYPE');
     next();
   } catch (err) {
     next(err);                 // errorHandler deletes req.file

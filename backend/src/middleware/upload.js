@@ -23,5 +23,5 @@ module.exports = multer({
   fileFilter: (req, file, cb) =>
     MIME_EXT[file.mimetype]
       ? cb(null, true)
-      : cb(new AppError('Only JPEG, PNG or WebP images are allowed', 400)),
+      : cb(new AppError('Only JPEG, PNG or WebP images are allowed', 400, 'INVALID_FILE_TYPE')),
 }).single('profile_picture');

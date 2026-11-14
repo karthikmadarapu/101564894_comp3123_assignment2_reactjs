@@ -27,10 +27,12 @@ exports.login = asyncHandler(async (req, res) => {
   }
 
   logger.info('Login succeeded', { userId: user._id.toString(), ip: req.ip });
+  const token = service.signToken(user);
   res.status(200).json({
     status: true,
     message: 'Login successful.',
-    jwt_token: service.signToken(user),
+    token, // name used in the assignment spec example
+    jwt_token: token, // name used by the A1 Postman collection
     user: { id: user._id, username: user.username, email: user.email }, // React uses this for the navbar
   });
 });
