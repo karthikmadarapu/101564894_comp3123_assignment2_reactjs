@@ -18,4 +18,11 @@ backend/logs/*
 .DS_Store
 Thumbs.db
 *.lnk
+<<<<<<< HEAD
 .postman/
+=======
+.postman/
+
+#Phase 1 backend 
+.env, uploads/*, logs/
+>>>>>>> phase2-frontend

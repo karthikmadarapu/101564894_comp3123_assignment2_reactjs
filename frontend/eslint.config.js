@@ -18,6 +18,12 @@ export default defineConfig([
       globals: globals.browser,
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
+<<<<<<< HEAD
+=======
+    rules: {
+      'no-console': 'error',
+    },
+>>>>>>> phase2-frontend
   },
   prettier,
 ]);
