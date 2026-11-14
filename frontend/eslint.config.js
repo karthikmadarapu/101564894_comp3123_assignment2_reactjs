@@ -19,7 +19,7 @@ export default defineConfig([
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
     rules: {
-      'no-console'  : 'error',
+      'no-console': 'error',
     },
   },
   prettier,
