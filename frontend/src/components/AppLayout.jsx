@@ -34,7 +34,7 @@ export default function AppLayout() {
               </Button>
             </Stack>
           ) : (
-            <Stack direction="row" spacing={1}>
+           <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
               <Button component={RouterLink} to="/login">
                 Log in
               </Button>
