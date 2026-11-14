@@ -1,39 +1,33 @@
 import { Component } from 'react';
-import { Box, Button, Paper, Typography } from '@mui/material';
+import { Button, Paper, Typography } from '@mui/material';
 
-// Catches render errors anywhere below it, so users never see a white screen or stack trace.
+// Catches render bugs so the user sees a friendly panel instead of a white screen or a stack trace.
 export default class ErrorBoundary extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
+  state = { hasError: false };
 
   static getDerivedStateFromError() {
     return { hasError: true };
   }
 
-  handleReload = () => {
-    // Sits outside the router, so use a full reload instead of navigate().
-    window.location.assign('/employees');
-  };
+  componentDidCatch(error, info) {
+    // eslint-disable-next-line no-console -- dev-only diagnostics; production shows the panel only
+    if (import.meta.env.DEV) console.error(error, info);
+  }
 
   render() {
     if (!this.state.hasError) return this.props.children;
-
     return (
-      <Box sx={{ minHeight: '100vh', display: 'grid', placeItems: 'center', p: 2 }}>
-        <Paper elevation={0} sx={{ p: 4, maxWidth: 420, textAlign: 'center', border: 1, borderColor: 'divider' }}>
-          <Typography variant="h5" gutterBottom>
-            Something went wrong
-          </Typography>
-          <Typography color="text.secondary" sx={{ mb: 3 }}>
-            An unexpected error occurred. Reloading usually fixes it.
-          </Typography>
-          <Button variant="contained" onClick={this.handleReload}>
-            Back to employees
-          </Button>
-        </Paper>
-      </Box>
+      <Paper variant="outlined" sx={{ p: { xs: 3, sm: 5 }, textAlign: 'center' }}>
+        <Typography variant="h2" component="h1" gutterBottom>
+          Something went wrong
+        </Typography>
+        <Typography color="text.secondary" sx={{ mb: 3 }}>
+          This page hit an unexpected problem. Your data is safe.
+        </Typography>
+        <Button variant="contained" onClick={() => window.location.assign('/employees')}>
+          Back to employees
+        </Button>
+      </Paper>
     );
   }
 }

@@ -1,86 +1,89 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-import { useSnackbar } from 'notistack';
-import { jwtDecode } from 'jwt-decode';
+import { setUnauthorizedHandler, TOKEN_KEY } from '../api/client';
 import { AuthContext } from './authContext';
-import { setUnauthorizedHandler } from '../api/client';
+import { useSnackbar } from '../hooks/useSnackbar';
+import { getTokenExpiry } from '../utils/jwt';
 
-const TOKEN_KEY = 'token';
 const USER_KEY = 'user';
-const MAX_TIMEOUT = 2 ** 31 - 1; // setTimeout limit (~24.8 days)
-
-// Milliseconds until the token expires; 0 if missing, malformed or expired.
-function msLeft(token) {
-  try {
-    const { exp } = jwtDecode(token);
-    return exp ? Math.max(exp * 1000 - Date.now(), 0) : 0;
-  } catch {
-    return 0;
-  }
-}
 
 function clearStorage() {
   localStorage.removeItem(TOKEN_KEY);
   localStorage.removeItem(USER_KEY);
 }
 
-// Runs once, before the first render: an expired session never renders as "logged in".
+// Runs once before the first render: an expired token never renders as "logged in".
 function readSession() {
   const token = localStorage.getItem(TOKEN_KEY);
-  if (!token || msLeft(token) <= 0) {
+  if (!token) return null;
+  const exp = getTokenExpiry(token);
+  if (exp && exp <= Date.now()) {
     clearStorage();
-    return { token: null, user: null };
+    return null;
   }
+  let user = null;
   try {
-    return { token, user: JSON.parse(localStorage.getItem(USER_KEY) ?? 'null') };
+    user = JSON.parse(localStorage.getItem(USER_KEY));
   } catch {
-    return { token, user: null };
+    /* ignore bad JSON */
   }
+  return { token, user };
 }
 
 export function AuthProvider({ children }) {
   const [session, setSession] = useState(readSession);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { enqueueSnackbar } = useSnackbar();
+  const { notify } = useSnackbar();
+  const endingRef = useRef(false); // several 401s can arrive at once; end the session only once
+
+  const endSession = useCallback(
+    (reason) => {
+      if (endingRef.current) return;
+      endingRef.current = true;
+      clearStorage();
+      queryClient.clear(); // the next user must never see the previous user's cached employees
+      setSession(null);
+      if (reason === 'expired') notify('Your session expired. Please log in again.', 'warning');
+      else notify('You have been logged out.', 'info');
+      navigate('/login', { replace: true });
+    },
+    [navigate, notify, queryClient],
+  );
 
   const login = useCallback((token, user) => {
     localStorage.setItem(TOKEN_KEY, token);
     localStorage.setItem(USER_KEY, JSON.stringify(user ?? null));
-    setSession({ token, user: user ?? null });
+    endingRef.current = false;
+    setSession({ token, user });
   }, []);
 
-  const logout = useCallback(() => {
-    clearStorage();
-    setSession({ token: null, user: null });
-    queryClient.clear(); // no stale employee data left in memory
-    navigate('/login', { replace: true });
-  }, [navigate, queryClient]);
+  const logout = useCallback(() => endSession('logout'), [endSession]);
 
-  const expire = useCallback(() => {
-    logout();
-    enqueueSnackbar('Your session expired. Please log in again.', {
-      variant: 'warning',
-      preventDuplicate: true,
-    });
-  }, [logout, enqueueSnackbar]);
-
-  // Any 401 from the API (outside login/signup) ends the session.
+  // 1) Reactive: the Axios response interceptor calls this on any 401 from a protected call.
   useEffect(() => {
-    setUnauthorizedHandler(expire);
-    return () => setUnauthorizedHandler(() => {});
-  }, [expire]);
+    setUnauthorizedHandler(() => endSession('expired'));
+    return () => setUnauthorizedHandler(null);
+  }, [endSession]);
 
-  // Auto-logout the moment the JWT expires, even if no request is made.
+  // 2) Proactive: log out exactly when the JWT expires, without waiting for the next request.
   useEffect(() => {
-    if (!session.token) return undefined;
-    const id = setTimeout(expire, Math.min(msLeft(session.token), MAX_TIMEOUT));
-    return () => clearTimeout(id);
-  }, [session.token, expire]);
+    if (!session?.token) return undefined;
+    const exp = getTokenExpiry(session.token);
+    if (!exp) return undefined;
+    const timer = setTimeout(() => endSession('expired'), Math.max(exp - Date.now(), 0));
+    return () => clearTimeout(timer);
+  }, [session, endSession]);
 
   const value = useMemo(
-    () => ({ ...session, isAuthenticated: Boolean(session.token), login, logout }),
+    () => ({
+      token: session?.token ?? null,
+      user: session?.user ?? null,
+      isAuthenticated: Boolean(session?.token),
+      login,
+      logout,
+    }),
     [session, login, logout],
   );
 
