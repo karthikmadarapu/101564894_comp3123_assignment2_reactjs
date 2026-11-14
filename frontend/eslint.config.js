@@ -18,6 +18,9 @@ export default defineConfig([
       globals: globals.browser,
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
+    rules: {
+      'no-console'  : 'error',
+    },
   },
   prettier,
 ]);
