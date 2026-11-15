@@ -26,7 +26,10 @@ services:
   backend:
     build: ./backend
     restart: unless-stopped
-    env_file: ./backend/.env                 # MONGODB_URI, JWT_SECRET, PORT, CORS_ORIGIN
+    env_file: ./backend/.env                 # shared with local `npm run dev` (JWT_SECRET, PORT, CORS_ORIGIN…)
+    environment:                             # container-only overrides; these win over env_file
+      MONGODB_URI: mongodb://mongo:27017/comp3123_assignment2   # "mongo" = Compose service name
+      NODE_ENV: production
     ports: [ "5000:5000" ]
     volumes:
       - uploads:/app/uploads                 # pictures persist across rebuilds
