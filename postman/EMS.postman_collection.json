@@ -1,7 +1,7 @@
 {
   "info": {
-    "name": "COMP3123 Assignment 2 \u2014 EMS API",
-    "description": "Run folders 1\u20138 in the Collection Runner (set the working directory to this postman/ folder so fixtures/ resolve). Run folder 9 on its own with 11 iterations \u2014 it locks login for the rate-limit window.",
+    "name": "COMP3123 Assignment 2 — EMS API",
+    "description": "Run folders 1–8 in the Collection Runner (set the working directory to this postman/ folder so fixtures/ resolve). Run folder 9 on its own with 11 iterations — it locks login for the rate-limit window.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -312,7 +312,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('status 201', () => pm.response.to.have.status(201));",
-                  "const j = pm.response.json(); const id = j._id || j.employee_id || j.id || (j.employee && j.employee._id); if (id) pm.environment.set('empA', id);"
+                  "const j = pm.response.json(); const id = j._id || j.employee_id || j.id || (j.employee && j.employee._id) || (j.data && j.data._id); if (id) pm.environment.set('empA', id);"
                 ]
               }
             }
@@ -377,7 +377,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('status 201', () => pm.response.to.have.status(201));",
-                  "const j = pm.response.json(); const id = j._id || j.employee_id || j.id || (j.employee && j.employee._id); if (id) pm.environment.set('empA2', id);"
+                  "const j = pm.response.json(); const id = j._id || j.employee_id || j.id || (j.employee && j.employee._id) || (j.data && j.data._id); if (id) pm.environment.set('empA2', id);"
                 ]
               }
             }
@@ -491,7 +491,7 @@
                 "type": "text/javascript",
                 "exec": [
                   "pm.test('status 200', () => pm.response.to.have.status(200));",
-                  "const e = pm.response.json(); pm.environment.set('oldPicture', (e.employee || e).profile_picture || '');"
+                  "const e = pm.response.json(); pm.environment.set('oldPicture', (e.data || e.employee || e).profile_picture || '');"
                 ]
               }
             }
@@ -1179,7 +1179,22 @@
                 "value": "Bearer {{tokenB}}"
               }
             ],
-            "url": "{{baseUrl}}/emp/employees/{{empA}}"
+            "url": {
+              "raw": "{{baseUrl}}/emp/employees?eid={{empA}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emp",
+                "employees"
+              ],
+              "query": [
+                {
+                  "key": "eid",
+                  "value": "{{empA}}"
+                }
+              ]
+            }
           },
           "event": [
             {
@@ -1335,7 +1350,22 @@
                 "value": "Bearer {{tokenA}}"
               }
             ],
-            "url": "{{baseUrl}}/emp/employees/{{empA}}"
+            "url": {
+              "raw": "{{baseUrl}}/emp/employees?eid={{empA}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "emp",
+                "employees"
+              ],
+              "query": [
+                {
+                  "key": "eid",
+                  "value": "{{empA}}"
+                }
+              ]
+            }
           },
           "event": [
             {
@@ -1391,7 +1421,7 @@
             "url": "{{baseUrl}}/user/login",
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"username\": \"{{userA}}\",\n  \"password\": \"Wrong@1234\"\n}"
+              "raw": "{\n  \"username\": \"ratelimit_probe\",\n  \"password\": \"Wrong@1234\"\n}"
             }
           },
           "event": [
