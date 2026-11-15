@@ -1,4 +1,4 @@
-# Employee Management System — COMP 3123 Assignment 2
+for # Employee Management System — COMP 3123 Assignment 2
 
 A full-stack MERN app: a React front end (Vite, MUI, TanStack Query) on top of my Assignment 1 Express/MongoDB API, packaged with Docker Compose.
 Each user signs up, logs in, and manages **only their own employees**, including profile pictures and server-side search.
