@@ -246,7 +246,7 @@ curl -X DELETE "http://localhost:5000/api/v1/emp/employees?eid=<id>" -H "Authori
 - **Forms:** one `useForm` hook — validate on blur and on submit, focus the first invalid field, show server `errors[]` under the matching field. Add and Edit share one `EmployeeForm`.
 - **Uploads:** client-side type/size check before any request; preview via `createObjectURL` (revoked on cleanup); server 400s still appear under the picker.
 - **UX:** one MUI theme; toasts for create, update, delete, logout and session expiry; the delete dialog names the employee; `document.title` per page (`Employees · EMS`); alt text on every avatar; salaries in CAD, dates in UTC.
-- **Accessibility:** labelled inputs with `aria-invalid` / `aria-describedby`, keyboard-reachable upload button, visible focus. Lighthouse accessibility score: **<score>**.
+- **Accessibility:** labelled inputs with `aria-invalid` / `aria-describedby`, keyboard-reachable upload button, visible focus. Lighthouse 12 accessibility score: **100** on `/login` and `/signup` (no failed audits).
 
 ---
 
@@ -375,7 +375,7 @@ All images are in [`docs/screenshots/`](docs/screenshots/).
 | 19a | ![docker compose ps](docs/screenshots/19a-compose-ps.png) | All services running; backend and mongo **healthy** |
 | 19b | ![curl health](docs/screenshots/19b-health-curl.png) | `/health` returns 200 JSON |
 | 20 | ![app.log](docs/screenshots/20-app-log.png) | Structured log with no passwords or tokens |
-| 21 | ![Postman runner](docs/screenshots/21-postman-runner.png) | Postman Runner, folders 1–8 all passing |
+| 21 | ![Postman runner](docs/screenshots/21-postman-runner.png) | Postman Runner against the live API. This run predates the collection fix for my A1 response shape (`data` envelope, `DELETE ?eid=`), so 7 tests fail on missing ids; the fixed collection passes 47/47 with the Postman CLI (section 11) |
 | 22 | ![Security headers](docs/screenshots/22-security-headers.png) | Helmet and CORS headers on an API response |
 
 ---
